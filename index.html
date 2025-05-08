@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wadah {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 50px;
+        padding: 30px;
+      }
+      .wadah > div {
+        width: 200px;
+        height: 300px;
+        background-color: antiquewhite;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        display: flex;
+        border: 0 2px 2px 2px solid black;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        cursor: grab;
+      }
+      .kopi,
+      .teh,
+      .mineral {
+        width: 100%;
+        height: 100%;
+        margin: 20px;
+        color: crimson;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: absolute;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .kopi {
+        background-color: rgb(89, 43, 9);
+      }
+      .teh {
+        background-color: burlywood;
+      }
+      .kosong {
+        background-color: rgb(215, 206, 206);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wadah">
+      <div>
+        <h1 class="gelas kopi" id="kopi">KOPI</h1>
+      </div>
+      <div>
+        <h1 class="gelas kosong" id="kosong"></h1>
+      </div>
+      <div>
+        <h1 class="gelas teh" id="teh">TEH</h1>
+      </div>
+    </div>
+    <script>
+      const kopi = document.querySelector(".kopi");
+      const teh = document.querySelector(".teh");
+
+      kopi.addEventListener("click", function () {
+        const moveKopi = kopi.innerText;
+        const warnaKopi = window.getComputedStyle(kopi).backgroundColor;
+        const kosong = document.querySelector(".kosong");
+
+        if (kosong) {
+          kosong.classList.remove("kosong");
+          kosong.classList.add("kopi");
+          kosong.innerText = moveKopi;
+          kosong.style.backgroundColor = warnaKopi;
+
+          kopi.classList.remove("kopi");
+          kopi.classList.add("kosong");
+          kopi.innerText = "";
+          kopi.style.backgroundColor = "";
+        }
+      });
+
+      teh.addEventListener("click", function () {
+        const moveTeh = teh.innerText;
+        const warnaTeh = window.getComputedStyle(teh).backgroundColor;
+        const kosong = document.querySelector(".kosong");
+
+        if (kosong) {
+          kosong.classList.remove("kosong");
+          kosong.classList.add("teh");
+          kosong.innerText = moveTeh;
+          kosong.style.backgroundColor = warnaTeh;
+
+          teh.classList.remove("teh");
+          teh.classList.add("kosong");
+          teh.innerText = "";
+          teh.style.backgroundColor = "";
+        }
+      });
+    </script>
+  </body>
+</html>
